@@ -1,0 +1,25 @@
+# Node modules
+node_modules/
+
+# Compiled output
+out/
+*.vsix
+
+# Runtime files
+mapping.json
+temp_input.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Package lock (optional - some keep it, some don't)
+package-lock.json

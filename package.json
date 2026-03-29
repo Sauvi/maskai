@@ -1,0 +1,110 @@
+{
+  "name": "maskai",
+  "displayName": "MaskAI",
+  "description": "Mask sensitive code before sending to AI",
+  "icon": "images/icon.png",
+  "version": "0.1.0",
+  "publisher": "saurabh-dev",
+  "author": {
+    "name": "saurabh"
+    },
+"repository": {
+    "type": "git",
+    "url": ""
+},
+"license": "MIT",
+
+  "engines": {
+    "vscode": "^1.110.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "MaskAI",
+      "properties": {
+        "maskai.maskClasses": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mask class names"
+        },
+        "maskai.maskFunctions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mask function and method names"
+        },
+        "maskai.maskParameters": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mask function parameters"
+        },
+        "maskai.maskVariables": {
+          "type": "boolean",
+          "default": true,
+          "description": "Mask variable names"
+        }
+      }
+    },
+    "commands": [
+        {
+            "command": "maskai.maskCode",
+            "title": "MaskAI: Copy Masked Code"
+        },
+        {
+            "command": "maskai.maskEntireFile",
+            "title": "MaskAI: Mask Entire File"
+        },
+        {
+            "command": "maskai.unmaskAndReplace",
+            "title": "MaskAI: Unmask and Replace"
+        }
+    ],
+    "menus": {
+        "editor/context": [
+            {
+                "command": "maskai.maskCode",
+                "when": "editorHasSelection",
+                "group": "9_cutcopypaste"
+            },
+            {
+                "command": "maskai.maskEntireFile",
+                "when": "editorTextFocus",
+                "group": "9_cutcopypaste"
+            },
+            {
+                "command": "maskai.unmaskAndReplace",
+                "when": "editorHasSelection",
+                "group": "9_cutcopypaste"
+            }
+        ],
+        "explorer/context": [
+            {
+                "command": "maskai.maskEntireFile",
+                "when": "resourceLangId == python || resourceLangId == javascript || resourceLangId == typescript || resourceLangId == javascriptreact || resourceLangId == typescriptreact",
+                "group": "9_cutcopypaste"
+            }
+        ]
+    }
+},
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.110.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.56.1",
+    "eslint": "^9.39.3",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
